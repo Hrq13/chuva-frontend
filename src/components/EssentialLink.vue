@@ -6,8 +6,8 @@
       :style="color"
       @click="goTo"
     >
-      <div class="icon" v-if="iconVisibility"/>
       <div class="row">
+      <div class="icon" v-show="iconVisibility"/>
         <q-item-section class="text-grey-8">
           <q-item-label>
             <span class="button-text q-ml-md">
@@ -28,9 +28,24 @@ export default {
       required: true
     }
   },
+  data () {
+    return {
+      color: 'background: white',
+      iconVisibility: false
+    }
+  },
   methods: {
     goTo () {
       return this.$route.path !== this.pageLink && this.$router.push(this.pageLink)
+    },
+    checkRoute () {
+      if (this.$route.path === this.pageLink) {
+        this.color = 'background: #ffe8e6;'
+        this.iconVisibility = true;
+      } else {
+        this.color = 'background: white;'
+        this.iconVisibility = false;
+      }
     }
   },
   computed: {
@@ -39,13 +54,15 @@ export default {
     },
     pageLink () {
       return this.page.link
-    },
-    color () {
-      return 'background: ' + (this.$route.path === this.pageLink ? '#ffe8e6;' : 'white;')
-    },
-    iconVisibility () {
-      return this.$route.path === this.pageLink ? true : false
     }
+  },
+  watch: {
+    '$route.path'() {
+      this.checkRoute()
+    }
+  },
+  created () {
+    this.checkRoute()
   }
 }
 </script>

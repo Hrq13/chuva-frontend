@@ -80,7 +80,7 @@ export default {
         },
         {
           name: 'Trabalhos',
-          link: '/'
+          link: '/trabalhos'
         },
         {
           name: 'Contato',
