@@ -34,8 +34,8 @@
         <p style="margin: auto 0">SLACA 2019</p>
       </q-card>
       <q-img :src="require('src/static/images/Logo400x400_0.png')"/>
-      <q-list v-for="(page, index) in pagesBtns" :key="index">
-        <essential-link :page="page" />
+      <q-list dense v-for="(page, index) in pagesBtns" :key="index">
+        <essential-link style="font-weight: 500" :page="page" />
         <q-separator />
       </q-list>
     </q-drawer>
@@ -73,7 +73,7 @@ export default {
         },
         {
           name: 'Trabalhos',
-          link: '/trabalhos'
+          link: '/'
         },
         {
           name: 'Contato',
