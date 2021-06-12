@@ -77,6 +77,6 @@ export default {
 }
 
 .button-text {
-  color: rgb(112, 112, 112)
+  color: rgb(136, 107, 107);
 }
 </style>

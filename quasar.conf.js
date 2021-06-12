@@ -20,7 +20,7 @@ module.exports = function (/* ctx */) {
     // --> boot files are part of "main.js"
     // https://v1.quasar.dev/quasar-cli/boot-files
     boot: [
-      
+
       'axios',
     ],
 
@@ -33,7 +33,7 @@ module.exports = function (/* ctx */) {
     extras: [
       // 'ionicons-v4',
       // 'mdi-v5',
-      // 'fontawesome-v5',
+      'fontawesome-v5',
       // 'eva-icons',
       // 'themify',
       // 'line-awesome',
