@@ -2,15 +2,15 @@
     <q-item
       :clickable="$route.path !== pageLink ? true : false"
       tag="span"
-      class="col link-button"
+      class="col"
       :style="color"
       @click="goTo"
     >
-      <div :style="'width: 6px; height: 30px; margin-left: -15px; margin-right: 15px; background: linear-gradient(0deg, rgba(235,125,52,1) 29%, rgba(231,167,57,1) 88%);' + iconVisibility"/>
+      <div class="icon" v-if="iconVisibility"/>
       <div class="row">
         <q-item-section class="text-grey-8">
           <q-item-label>
-            <span class="q-ml-md">
+            <span class="button-text q-ml-md">
               {{ pageName }}
             </span>
           </q-item-label>
@@ -44,8 +44,22 @@ export default {
       return 'background: ' + (this.$route.path === this.pageLink ? '#ffe8e6;' : 'white;')
     },
     iconVisibility () {
-      return 'display: ' + (this.$route.path === this.pageLink ? 'inline;' : 'none;')
+      return this.$route.path === this.pageLink ? true : false
     }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.icon {
+  width: 6px;
+  height: 30px;
+  margin-left: -15px;
+  margin-right: 15px;
+  background: linear-gradient(0deg, rgba(235,125,52,1) 29%, rgba(231,167,57,1) 88%);
+}
+
+.button-text {
+  color: rgb(112, 112, 112)
+}
+</style>

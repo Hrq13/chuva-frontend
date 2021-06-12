@@ -3,6 +3,7 @@
     <q-header elevated>
       <q-toolbar>
         <q-btn
+          v-if="$q.platform.is.mobile"
           flat
           dense
           round
@@ -20,6 +21,7 @@
     </q-header>
 
     <q-drawer
+      v-if="leftDrawerOpen"
       show-if-above
       elevated
       :width="245"
@@ -27,8 +29,7 @@
       style="background: white"
     >
       <q-card
-        class="text-white text-h4 text-center text-weight-bold row justify-center"
-        style="background: linear-gradient(0deg, rgba(235,125,52,1) 29%, rgba(231,167,57,1) 88%); height: 80px;"
+        class="drawerCard row"
         square
       >
         <p style="margin: auto 0">SLACA 2019</p>
@@ -54,6 +55,7 @@ export default {
   name: 'MainLayout',
   data () {
     return {
+      leftDrawerOpen: true,
       pagesBtns: [
         {
           name: 'Apresentação',
@@ -84,3 +86,15 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.drawerCard {
+  color: white;
+  font-size: 24pt;
+  text-align: center;
+  font-weight: 600;
+  justify-content: center;
+  background: linear-gradient(0deg, rgba(235,125,52,1) 29%, rgba(231,167,57,1) 88%);
+  height: 80px;
+}
+</style>
