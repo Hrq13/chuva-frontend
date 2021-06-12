@@ -1,48 +1,37 @@
 <template>
-  <q-item
-    clickable
-    tag="a"
-    target="_blank"
-    :href="link"
-  >
-    <q-item-section
-      v-if="icon"
-      avatar
+  <div>
+    <q-item
+      clickable
+      tag="a"
+      @click="goTo"
     >
-      <q-icon :name="icon" />
-    </q-item-section>
-
-    <q-item-section>
-      <q-item-label>{{ title }}</q-item-label>
-      <q-item-label caption>
-        {{ caption }}
-      </q-item-label>
-    </q-item-section>
-  </q-item>
+      <q-item-section class="text-grey-8">
+        <q-item-label class="q-ml-md">{{ pageName }}</q-item-label>
+      </q-item-section>
+    </q-item>
+  </div>
 </template>
 
 <script>
 export default {
   name: 'EssentialLink',
   props: {
-    title: {
-      type: String,
+    page: {
+      type: Object,
       required: true
+    }
+  },
+  methods: {
+    goTo () {
+      return this.$route.path !== this.pageLink && this.$router.push(this.pageLink)
+    }
+  },
+  computed: {
+    pageName () {
+      return this.page.name
     },
-
-    caption: {
-      type: String,
-      default: ''
-    },
-
-    link: {
-      type: String,
-      default: '#'
-    },
-
-    icon: {
-      type: String,
-      default: ''
+    pageLink () {
+      return this.page.link
     }
   }
 }

@@ -20,23 +20,23 @@
     </q-header>
 
     <q-drawer
-      v-model="leftDrawerOpen"
       show-if-above
-      bordered
+      elevated
+      :width="245"
       content-class="bg-grey-1"
+      style="background: white"
     >
-      <q-list>
-        <q-item-label
-          header
-          class="text-grey-8"
-        >
-          Essential Links
-        </q-item-label>
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
+      <q-card
+        class="text-white text-h4 text-center text-weight-bold row justify-center"
+        style="background: linear-gradient(0deg, rgba(235,125,52,1) 29%, rgba(231,167,57,1) 88%); height: 80px;"
+        square
+      >
+        <p style="margin: auto 0">SLACA 2019</p>
+      </q-card>
+      <q-img :src="require('src/static/images/Logo400x400_0.png')"/>
+      <q-list v-for="(page, index) in pagesBtns" :key="index">
+        <essential-link :page="page" />
+        <q-separator />
       </q-list>
     </q-drawer>
 
@@ -47,60 +47,39 @@
 </template>
 
 <script>
-import EssentialLink from 'components/EssentialLink.vue'
-
-const linksData = [
-  {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
-  },
-  {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
-  },
-  {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
-  }
-];
+import EssentialLink from '../components/EssentialLink.vue'
 
 export default {
-  name: 'MainLayout',
   components: { EssentialLink },
+  name: 'MainLayout',
   data () {
     return {
-      leftDrawerOpen: false,
-      essentialLinks: linksData
+      pagesBtns: [
+        {
+          name: 'Apresentação',
+          link: '/apresentacao'
+        },
+        {
+          name: 'Comitês',
+          link: '/comites'
+        },
+        {
+          name: 'Autores',
+          link: '/autores'
+        },
+        {
+          name: 'Eixos temáticos',
+          link: '/eixos'
+        },
+        {
+          name: 'Trabalhos',
+          link: '/trabalhos'
+        },
+        {
+          name: 'Contato',
+          link: '/contato'
+        }
+      ]
     }
   }
 }
