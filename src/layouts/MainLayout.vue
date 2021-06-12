@@ -2,15 +2,21 @@
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
-        <q-btn
+        <q-btn-dropdown
           v-if="$q.platform.is.mobile"
           flat
           dense
           round
+          dropdown-icon="none"
           icon="menu"
           aria-label="Menu"
-          @click="leftDrawerOpen = !leftDrawerOpen"
-        />
+          @click="mobileDrawerOpen = !mobileDrawerOpen"
+        >
+          <q-list dense v-for="(page, index) in pagesBtns" :key="index">
+            <essential-link style="font-weight: 500" :page="page" />
+            <q-separator />
+          </q-list>
+        </q-btn-dropdown>
 
         <q-toolbar-title>
           Quasar App
@@ -21,7 +27,6 @@
     </q-header>
 
     <q-drawer
-      v-if="leftDrawerOpen"
       show-if-above
       elevated
       :width="245"
@@ -55,7 +60,7 @@ export default {
   name: 'MainLayout',
   data () {
     return {
-      leftDrawerOpen: true,
+      mobileDrawerOpen: false,
       pagesBtns: [
         {
           name: 'Apresentação',
