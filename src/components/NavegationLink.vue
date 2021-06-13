@@ -21,7 +21,7 @@
 
 <script>
 export default {
-  name: 'EssentialLink',
+  name: 'NavegationLink',
   props: {
     page: {
       type: Object,
@@ -73,7 +73,7 @@ export default {
   height: 30px;
   margin-left: -15px;
   margin-right: 15px;
-  background: linear-gradient(0deg, rgba(235,125,52,1) 29%, rgba(231,167,57,1) 88%);
+  background: linear-gradient(180deg, #FFB354 0%, #EE7A3A 100%);
 }
 
 .button-text {

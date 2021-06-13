@@ -26,7 +26,7 @@
             Anais do 13o Simpósio Latino Americano de Ciência de Alimentos
           </div>
           <div class="row q-ml-lg">
-              ISSN: 1234-5678
+            ISSN: 1234-5678
           </div>
         </div>
 
@@ -35,7 +35,7 @@
             Anais do 13o Simpósio Latino Americano de Ciência de Alimentos
           </div>
           <div class="row" style="font-size: 65%">
-              ISSN: 1234-5678
+            ISSN: 1234-5678
           </div>
         </div>
 
@@ -63,7 +63,7 @@
               <span class="row q-ml-md q-mr-sm text-right">Bem vindo!<br> alguem12@galoascience.com</span>
             </div>
             <q-avatar>
-              <img :src="require('src/static/images/profile-picture.png')">
+              <img :src="require('src/assets/images/profile-picture.png')">
               <q-badge floating rounded color="red">2</q-badge>
             </q-avatar>
           </div>
@@ -88,7 +88,7 @@
             </q-btn>
           </div>
           <q-avatar>
-            <img :src="require('src/static/images/profile-picture.png')">
+            <img :src="require('src/assets/images/profile-picture.png')">
             <q-badge floating rounded color="red">2</q-badge>
           </q-avatar>
         </div>
@@ -109,10 +109,10 @@
       >
         <p style="margin: auto 0">SLACA 2019</p>
       </q-card>
-      <q-img :src="require('src/static/images/Logo400x400_0.png')"/>
-      <q-list dense v-for="(page, index) in pagesBtns" :key="index">
-        <essential-link style="font-weight: 500" :page="page" />
-        <q-separator />
+      <q-img :src="require('src/assets/images/Logo400x400_0.png')"/>
+      <q-list dense v-for="(page, index) in pageBtns" :key="index">
+        <navegation-link style="font-weight: 500" :page="page" />
+        <q-separator class="separator"/>
       </q-list>
     </q-drawer>
 
@@ -123,20 +123,20 @@
 </template>
 
 <script>
-import EssentialLink from '../components/EssentialLink.vue'
+import NavegationLink from '../components/NavegationLink.vue'
 
 export default {
-  components: { EssentialLink },
+  components: { NavegationLink },
   name: 'MainLayout',
   data () {
     return {
       mobileDrawerOpen: false,
-      languageList: ['PT, BR', 'EN-US'],
+      languageList: ['PT, BR', 'EN, US'],
       selectedLanguage: 'PT, BR',
-      pagesBtns: [
+      pageBtns: [
         {
           name: 'Apresentação',
-          link: '/apresentacao'
+          link: '/'
         },
         {
           name: 'Comitês',
@@ -174,7 +174,7 @@ export default {
 <style lang="scss" scoped>
 .toolbar {
   height: 80px;
-  background: #ffe8e6;
+  background: primary;
   color: rgb(136, 107, 107)
 }
 
@@ -184,7 +184,7 @@ export default {
   text-align: center;
   font-weight: 600;
   justify-content: center;
-  background: linear-gradient(0deg, rgba(235,125,52,1) 29%, rgba(231,167,57,1) 88%);
+  background: linear-gradient(180deg, #FFB354 0%, #EE7A3A 100%);
   height: 80px;
 }
 
