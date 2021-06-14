@@ -84,37 +84,24 @@
         </q-card>
       </div>
     </div>
-    <div class="resumo-div">
-      <q-card flat bordered class="resumo-card">
-        <div class="resumo-area" style="padding-left: 10px; height: 40px;">
-          Resumo
-        </div>
-
-        <q-separator />
-
-        <q-scroll-area :style="showReadMoreButton ? 'height: 200px;' : 'height: 390px'">
-          <div>
-            <div class="q-pa-md resumo-inner-text">
-              <span v-if="showReadMoreButton">
-                {{ resumoText }}
-                <span class="readMoreBtn" @click="showFullText()">ver mais</span>
-              </span>
-              <span v-else v-html="fullResumoText" />
-            </div>
-          </div>
-        </q-scroll-area>
-      </q-card>
-    </div>
+    <text-section
+      title="Resumo"
+      :summarizedText="resumoText"
+      :showReadMoreBtn="true"
+      :fullText="fullResumoText"
+    />
   </q-page>
 </template>
 
 <script>
-import VideoPlayer from '../components/VideoPlayer.vue'
+import VideoPlayer from 'src/components/Index-page/VideoPlayer.vue'
+import TextSection from 'src/components/Index-page/TextSection.vue'
 
 export default {
   name: 'PageIndex',
   components: {
-    VideoPlayer
+    VideoPlayer,
+    TextSection
   },
   data () {
     return {
@@ -135,12 +122,6 @@ export default {
       `
     }
   },
-  methods: {
-    showFullText () {
-      this.resumoText = this.fullResumoText
-      this.showReadMoreButton = false
-    }
-  },
   computed: {
     isMobile() {
       return this.$q.platform.is.mobile
@@ -150,7 +131,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.page-row, .resumo-div {
+.page-row {
   margin: 20px 45px;
 }
 
@@ -196,7 +177,7 @@ export default {
   font-weight: 500;
 }
 
-.card-inner-text, .resumo-inner-text {
+.card-inner-text {
   font-family: 'Quicksand', sans-serif;
   color: $text-primary;
   font-size: 14px;
@@ -206,34 +187,5 @@ export default {
 
 .mobile-top-text-card {
   width: 100%
-}
-
-.resumo-cards {
-  background: $primary;
-  font-size: 15pt;
-  color: $text-primary;
-  padding: 7px 10px 10px 10px;
-  font-weight: 500;
-}
-
-.resumo-area {
-  background: $primary;
-  font-size: 15pt;
-  color: $text-primary;
-  padding: 5px;
-  font-weight: 500;
-}
-
-.resumo-inner-text {
-  padding: 10px;
-  font-size: 10pt;
-  color: $text-primary;
-  font-weight: 400;
-}
-
-.readMoreBtn {
-  color: $orange-bg;
-  font-weight: 600;
-  cursor: pointer;
 }
 </style>
