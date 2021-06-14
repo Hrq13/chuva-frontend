@@ -7,18 +7,18 @@
         </span>
         <video-player/>
       </div>
-      <div class="col top-col-2">
+      <div :class="isMobile ? 'row q-mt-lg' : 'col top-col-2'">
         <div style="text-align: right;">
-          <q-btn class="top-btn" style="margin-left: 100px" dense icon="download" label="Download" />
+          <q-btn class="top-btn" dense icon="download" label="Download" />
           <q-btn class="top-btn q-ml-sm" dense icon="star" />
           <q-btn class="top-btn q-ml-sm" dense>
             <q-img :src="require('src/assets/icons/doi.svg')" width="24px"/>
           </q-btn>
         </div>
-        <div class="col cite-trabalho">
+        <div :class="(isMobile ? 'row' : 'col') + ' cite-trabalho'">
           COMO CITAR ESSE TRABALHO?
         </div>
-        <div class="col">
+        <div v-if="!isMobile">
           <q-card flat bordered class="top-text-card">
             <div class="card-title-area">
               Detalhes
@@ -27,25 +27,62 @@
             <q-separator />
 
             <q-scroll-area
-              :thumb-style="thumbStyle"
-              :bar-style="barStyle"
-              style="height: 350px; max-width: 300px;"
+              style="height: 350px; max-width: 300px"
             >
-              <div class="q-pa-md" style="font-size: 11pt">
+              <div class="q-pa-md card-inner-text">
                 Tipo de Apresentação: <strong>Pôster</strong><br>
-                Eixo temático: <strong>Alimentação e saúde(AS)</strong><br>
+                Eixo temático: <strong>Alimentação e saúde (AS) </strong><br>
                 Palavras-chaves: <strong>Alimentos funcionais, alimentação escolar.</strong><br><br>
+
                 <strong>Autores:</strong><br>
                 Galileo Galilei¹<br>
                 Berta Lange de Morretes²<br>
                 Isaac Newton³<br>
                 Cesar Lattes¹<br>
-                Stephen Hawking⁴<br>
+                Stephen Hawking⁴<br><br>
+
+                <i>
+                ¹Universidade Estadual de Campinas<br>
+                ²Universidade de São Paulo<br>
+                ³Instituto Nacional de Pesquisas Espaciais<br>
+                ⁴Universidade Federal do Rio de Janeiro<br>
+                </i>
               </div>
             </q-scroll-area>
           </q-card>
         </div>
       </div>
+      <div v-if="isMobile" style="width: 100%">
+          <q-card flat bordered class="mobile-top-text-card">
+            <div class="card-title-area">
+              Detalhes
+            </div>
+
+            <q-separator />
+
+            <q-scroll-area style="height: 200px;">
+              <div class="q-pa-md card-inner-text">
+                Tipo de Apresentação: <strong>Pôster</strong><br>
+                Eixo temático: <strong>Alimentação e saúde (AS) </strong><br>
+                Palavras-chaves: <strong>Alimentos funcionais, alimentação escolar.</strong><br><br>
+
+                <strong>Autores:</strong><br>
+                Galileo Galilei¹<br>
+                Berta Lange de Morretes²<br>
+                Isaac Newton³<br>
+                Cesar Lattes¹<br>
+                Stephen Hawking⁴<br><br>
+
+                <i>
+                ¹Universidade Estadual de Campinas<br>
+                ²Universidade de São Paulo<br>
+                ³Instituto Nacional de Pesquisas Espaciais<br>
+                ⁴Universidade Federal do Rio de Janeiro<br>
+                </i>
+              </div>
+            </q-scroll-area>
+          </q-card>
+        </div>
     </div>
   </q-page>
 </template>
@@ -57,6 +94,11 @@ export default {
   name: 'PageIndex',
   components: {
     VideoPlayer
+  },
+  computed: {
+    isMobile() {
+      return this.$q.platform.is.mobile
+    }
   }
 }
 </script>
@@ -67,7 +109,7 @@ export default {
 }
 
 .top-row-header {
-  font-size: 15pt;
+  font-size: min(max(1rem, 4vw), 15pt);
   font-weight: 700;
   color: rgb(242, 115, 68)
 }
@@ -87,13 +129,10 @@ export default {
   font-family: Roboto;
   font-style: normal;
   font-weight: 500;
-  font-size: 14px;
+  font-size: min(max(1rem, 4vw), 14px);
   line-height: 25px;
-  /* identical to box height, or 179% */
-
   text-align: right;
   letter-spacing: 0.05em;
-
   color: #ED7839;
 }
 
@@ -109,5 +148,16 @@ export default {
   height: 45px;
   padding: 10px 0 10px 10px;
   font-weight: 500;
+}
+
+.card-inner-text {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.mobile-top-text-card {
+  width: 100%
 }
 </style>

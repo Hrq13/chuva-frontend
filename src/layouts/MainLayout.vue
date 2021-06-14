@@ -3,7 +3,7 @@
     <q-header>
       <q-toolbar class="toolbar">
         <q-btn-dropdown
-          v-if="$q.platform.is.mobile"
+          v-if="isMobile"
           flat
           dense
           round
@@ -12,22 +12,22 @@
           aria-label="Menu"
           @click="mobileDrawerOpen = !mobileDrawerOpen"
         >
-          <q-list dense v-for="(page, index) in pagesBtns" :key="index">
-            <essential-link style="font-weight: 500" :page="page" />
+          <q-list dense v-for="(page, index) in pageBtns" :key="index">
+            <navegation-link style="font-weight: 500" :page="page" />
             <q-separator />
           </q-list>
         </q-btn-dropdown>
 
-        <div class="col" v-if="!$q.platform.is.mobile">
-          <div class="row q-ml-lg" style="margin-right: auto;">
+        <div class="col header-text" style="height: 70px; overflow: block;" v-if="!isMobile">
+          <span class="row q-ml-lg" style="margin-right: auto;">
             Anais do Simpósio Latino Americano de Ciências de Alimentos
-          </div>
-          <div class="row q-ml-lg" style="font-size: 150%">
+          </span>
+          <span class="row q-ml-lg mid-text">
             Anais do 13o Simpósio Latino Americano de Ciência de Alimentos
-          </div>
-          <div class="row q-ml-lg">
+          </span>
+          <span class="row q-ml-lg">
             ISSN: 1234-5678
-          </div>
+          </span>
         </div>
 
         <div class="col" v-else>
@@ -39,7 +39,7 @@
           </div>
         </div>
 
-        <div class="row" v-if="!$q.platform.is.mobile">
+        <div class="row" v-if="!isMobile">
           <div class="col">
             <q-btn-dropdown class="dropdown" flat style="width: 105px">
               <template v-slot:label>
@@ -96,7 +96,7 @@
     </q-header>
 
     <q-drawer
-      v-if="!$q.platform.is.mobile"
+      v-if="!isMobile"
       show-if-above
       elevated
       :width="245"
@@ -167,6 +167,11 @@ export default {
         this.selectedLanguage = language
       }
     }
+  },
+  computed: {
+    isMobile () {
+      return this.$q.platform.is.mobile
+    }
   }
 }
 </script>
@@ -176,6 +181,18 @@ export default {
   height: 80px;
   background: primary;
   color: rgb(136, 107, 107)
+}
+
+.header-text {
+  display: inline-block;
+  white-space: nowrap;
+  font-size: min(max(1rem, 4vw), 10pt);
+  overflow: initial
+}
+
+.mid-text {
+  text-overflow: ellipsis;
+  font-size: min(max(1rem, 4vw), 150%);
 }
 
 .drawerCard {
