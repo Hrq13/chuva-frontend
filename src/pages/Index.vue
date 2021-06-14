@@ -9,9 +9,9 @@
       </div>
       <div :class="isMobile ? 'row q-mt-lg' : 'col top-col-2'">
         <div style="text-align: right;">
-          <q-btn class="top-btn" dense icon="download" label="Download" />
-          <q-btn class="top-btn q-ml-sm" dense icon="star" />
-          <q-btn class="top-btn q-ml-sm" dense>
+          <q-btn class="top-btn" style="width: 130px" dense icon="download" label="Download" />
+          <q-btn class="top-btn q-ml-sm" style="width: 40px" dense icon="star" />
+          <q-btn class="top-btn q-ml-sm" style="width: 40px" dense>
             <q-img :src="require('src/assets/icons/doi.svg')" width="24px"/>
           </q-btn>
         </div>
@@ -86,21 +86,21 @@
     </div>
     <div class="resumo-div">
       <q-card flat bordered class="resumo-card">
-        <div class="resumo-area" style="padding-left: 10px; height: 45px;">
+        <div class="resumo-area" style="padding-left: 10px; height: 40px;">
           Resumo
         </div>
 
-        <q-scroll-area
-          style="height: 200px;"
-        >
-          <div class="q-pa-md resumo-inner-text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vitae turpis auctor, mollis felis ut, commodo turpis. Phasellus felis mauris, egestas eget cursus et, iaculis quis lacus. Fusce auctor eros sed magna ultricies gravida. Etiam aliquam dictum nisl, vel aliquet enim accumsan sit amet. Donec finibus nisi tellus, ut viverra lorem vestibulum ut. Phasellus condimentum orci id leo condimentum lobortis et non lorem. Sed id nisl metus. Quisque sollicitudin ligula in sapien scelerisque, ac gravida eros vestibulum.
-            <br><br>
-            Fusce vitae luctus dui. Donec id euismod mauris, in volutpat urna. Proin dapibus consequat feugiat. Proin dictum justo arcu, quis vestibulum augue lacinia quis. Sed dignissim dui nulla, ut faucibus mauris sodales id. Aliquam erat volutpat. Maecenas dolor enim, tincidunt id elit non, suscipit interdum turpis. Etiam finibus urna libero, eget interdum eros volutpat ullamcorper. Pellentesque et pretium lorem. Aenean interdum quis diam ac porttitor. Cras nec ipsum pulvinar, pharetra libero non, ornare enim. Etiam in laoreet odio.
-            <br><br>
-            Nam eget tristique elit, at fermentum tellus. Mauris scelerisque ligula id eleifend feugiat. Donec eleifend vehicula sem nec dapibus. Integer scelerisque neque dui, in lacinia erat molestie eu. Phasellus maximus dui eget lacus porta tempor. Ut ex nibh, dignissim quis purus semper, efficitur facilisis turpis. Praesent blandit elementum ultricies. Aliquam sit amet enim sit amet nulla pulvinar lobortis consectetur non odio. Phasellus at lacus hendrerit, vulputate nisi sit amet, viverra mauris. Etiam eu scelerisque orci. Quisque sagittis, mi vitae pharetra iaculis, orci elit eleifend massa, eu posuere mauris odio id odio. Morbi eu libero luctus, consectetur lorem vel, interdum sapien. Aenean in porta arcu. Maecenas eu maximus massa.
-            <br><br>
-            Praesent velit dolor, dignissim sed quam ac, efficitur porta justo. Pellentesque porta pharetra felis ut hendrerit. Nulla facilisi. Aliquam erat volutpat. Nunc sit amet faucibus quam. Maecenas dapibus luctus dolor at viverra. Duis nec fringilla libero. Duis risus nibh, viverra ac orci nec, iaculis dictum sem. Aliquam at malesuada arcu. Aliquam erat volutpat. Donec varius ipsum purus, ut vehicula purus placerat vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        <q-separator />
+
+        <q-scroll-area :style="showReadMoreButton ? 'height: 200px;' : 'height: 390px'">
+          <div>
+            <div class="q-pa-md resumo-inner-text">
+              <span v-if="showReadMoreButton">
+                {{ resumoText }}
+                <span class="readMoreBtn" @click="showFullText()">ver mais</span>
+              </span>
+              <span v-else v-html="fullResumoText" />
+            </div>
           </div>
         </q-scroll-area>
       </q-card>
@@ -115,6 +115,31 @@ export default {
   name: 'PageIndex',
   components: {
     VideoPlayer
+  },
+  data () {
+    return {
+      showReadMoreButton: true,
+      resumoText: `
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vitae turpis auctor, mollis felis ut, commodo turpis. Phasellus felis mauris, egestas eget cursus et, iaculis quis lacus. Fusce auctor eros sed magna ultricies gravida. Etiam aliquam dictum nisl, vel aliquet enim accumsan sit amet. Donec finibus nisi tellus, ut viverra lorem vestibulum ut. Phasellus condimentum orci id leo condimentum lobortis et non lorem. Sed id nisl metus. Quisque sollicitudin ligula in sapien scelerisque, ac gravida eros vestibulum.
+      Fusce vitae luctus dui. Donec id euismod mauris, in volutpat urna. Proin dapibus consequat feugiat. Proin dictum justo arcu, quis vestibulum augue lacinia quis. Sed dignissim dui nulla, ut faucibus mauris sodales id. Aliquam erat volutpat. Maecenas dolor enim, tincidunt id elit non, suscipit interdum turpis. Etiam finibus urna libero, eget interdum eros volutpat ullamcorper. Pellentesque et pretium lorem. Aenean interdum quis diam ac porttitor. Cras nec ipsum pulvinar, pharetra libero non, ornare enim. Etiam in laoreet
+      Nam eget tristique elit, at fermentum tellus. Mauris scelerisque ligula id eleifend feugiat. Donec eleifend vehicula sem nec dapibus. Integer scelerisque neque dui, in lacinia erat molestie eu. Phasellus..
+      `,
+      fullResumoText: `
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vitae turpis auctor, mollis felis ut, commodo turpis. Phasellus felis mauris, egestas eget cursus et, iaculis quis lacus. Fusce auctor eros sed magna ultricies gravida. Etiam aliquam dictum nisl, vel aliquet enim accumsan sit amet. Donec finibus nisi tellus, ut viverra lorem vestibulum ut. Phasellus condimentum orci id leo condimentum lobortis et non lorem. Sed id nisl metus. Quisque sollicitudin ligula in sapien scelerisque, ac gravida eros vestibulum.
+      <br><br>
+      Fusce vitae luctus dui. Donec id euismod mauris, in volutpat urna. Proin dapibus consequat feugiat. Proin dictum justo arcu, quis vestibulum augue lacinia quis. Sed dignissim dui nulla, ut faucibus mauris sodales id. Aliquam erat volutpat. Maecenas dolor enim, tincidunt id elit non, suscipit interdum turpis. Etiam finibus urna libero, eget interdum eros volutpat ullamcorper. Pellentesque et pretium lorem. Aenean interdum quis diam ac porttitor. Cras nec ipsum pulvinar, pharetra libero non, ornare enim. Etiam in laoreet odio.
+      <br><br>
+      Nam eget tristique elit, at fermentum tellus. Mauris scelerisque ligula id eleifend feugiat. Donec eleifend vehicula sem nec dapibus. Integer scelerisque neque dui, in lacinia erat molestie eu. Phasellus maximus dui eget lacus porta tempor. Ut ex nibh, dignissim quis purus semper, efficitur facilisis turpis. Praesent blandit elementum ultricies. Aliquam sit amet enim sit amet nulla pulvinar lobortis consectetur non odio. Phasellus at lacus hendrerit, vulputate nisi sit amet, viverra mauris. Etiam eu scelerisque orci. Quisque sagittis, mi vitae pharetra iaculis, orci elit eleifend massa, eu posuere mauris odio id odio. Morbi eu libero luctus, consectetur lorem vel, interdum sapien. Aenean in porta arcu. Maecenas eu maximus massa.
+      <br><br>
+      Praesent velit dolor, dignissim sed quam ac, efficitur porta justo. Pellentesque porta pharetra felis ut hendrerit. Nulla facilisi. Aliquam erat volutpat. Nunc sit amet faucibus quam. Maecenas dapibus luctus dolor at viverra. Duis nec fringilla libero. Duis risus nibh, viverra ac orci nec, iaculis dictum sem. Aliquam at malesuada arcu. Aliquam erat volutpat. Donec varius ipsum purus, ut vehicula purus placerat vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      `
+    }
+  },
+  methods: {
+    showFullText () {
+      this.resumoText = this.fullResumoText
+      this.showReadMoreButton = false
+    }
   },
   computed: {
     isMobile() {
@@ -150,7 +175,7 @@ export default {
   font-family: Roboto;
   font-style: normal;
   font-weight: 500;
-  font-size: min(max(1rem, 4vw), 14px);
+  font-size: min(max(1rem, 4vw), 14.5px);
   line-height: 25px;
   text-align: right;
   letter-spacing: 0.05em;
@@ -166,12 +191,12 @@ export default {
   background: $primary;
   font-size: 15pt;
   color: $text-primary;
-  height: 45px;
+  height: 47px;
   padding: 10px 0 10px 10px;
   font-weight: 500;
 }
 
-.card-inner-text {
+.card-inner-text, .resumo-inner-text {
   font-family: 'Quicksand', sans-serif;
   color: $text-primary;
   font-size: 14px;
@@ -183,19 +208,32 @@ export default {
   width: 100%
 }
 
-.resumo-card {
+.resumo-cards {
   background: $primary;
   font-size: 15pt;
   color: $text-primary;
-  height: 45px;
   padding: 7px 10px 10px 10px;
   font-weight: 500;
 }
 
+.resumo-area {
+  background: $primary;
+  font-size: 15pt;
+  color: $text-primary;
+  padding: 5px;
+  font-weight: 500;
+}
+
 .resumo-inner-text {
-  padding: 7px 10px 10px 10px;
+  padding: 10px;
   font-size: 10pt;
   color: $text-primary;
   font-weight: 400;
+}
+
+.readMoreBtn {
+  color: $orange-bg;
+  font-weight: 600;
+  cursor: pointer;
 }
 </style>
