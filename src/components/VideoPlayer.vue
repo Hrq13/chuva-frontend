@@ -65,7 +65,7 @@ export default {
   height: 5%;
   left: 24px;
   right: 291px;
-  top: 10%;
+  top: 6%;
   width: 90%;
 }
 
