@@ -5,7 +5,7 @@
         <span class="top-row-header">
           Análise sensorial de preparações funcionais desenvolvidas para escolares entre 09 e 15 anos, do município de Campinas/SP
         </span>
-        <video-player/>
+        <video-player style="margin-top: 20.5px;" />
       </div>
       <div :class="isMobile ? 'row q-mt-lg' : 'col top-col-2'">
         <div style="text-align: right;">
@@ -90,18 +90,22 @@
       :showReadMoreBtn="true"
       :fullText="fullResumoText"
     />
+    <discussion-section />
   </q-page>
 </template>
 
 <script>
 import VideoPlayer from 'src/components/Index-page/VideoPlayer.vue'
 import TextSection from 'src/components/Index-page/TextSection.vue'
+import DiscussionSection from 'src/components/Index-page/DiscussionSection.vue'
+
 
 export default {
   name: 'PageIndex',
   components: {
     VideoPlayer,
-    TextSection
+    TextSection,
+    DiscussionSection
   },
   data () {
     return {

@@ -1,33 +1,35 @@
 <template>
-  <div class="resumo-div">
-    <q-card flat bordered class="resumo-card">
-      <div class="resumo-area" style="padding-left: 10px; height: 40px;">
-        {{ title }}
+  <div class="discussion-div">
+    <q-card flat bordered class="discussion-card">
+      <div class="discussion-area" style="padding-left: 10px; height: 40px;">
+        Discussões
       </div>
 
       <q-separator />
 
-      <q-scroll-area :style="showBtn ? 'height: 200px;' : 'height: 390px'">
-        <div>
-          <div class="q-pa-md resumo-inner-text">
-            <span v-if="showBtn">
-              {{ displayText }}
-              <span class="readMoreBtn" @click="showFullText()">ver mais</span>
-            </span>
-            <span v-else v-html="displayText" />
-          </div>
-        </div>
-      </q-scroll-area>
+      <q-card-section style="height: 390px">
+
+      </q-card-section>
     </q-card>
   </div>
 </template>
 
 <script>
 export default {
-
+  name: 'DiscussionSection'
 }
 </script>
 
 <style lang="scss" scoped>
+.discussion-div {
+  margin: 20px 45px;
+}
 
+.discussion-area {
+  background: $primary;
+  color: $text-primary;
+  font-size: 15pt;
+  font-weight: 500;
+  padding: 5px;
+}
 </style>
