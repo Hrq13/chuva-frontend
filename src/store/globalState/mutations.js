@@ -11,7 +11,6 @@ export function addComment (state, { author, subject, text }) {
     likes: 0,
     replies: []
   }
-  console.log(newComment)
   state.comments.unshift(newComment)
 }
 
