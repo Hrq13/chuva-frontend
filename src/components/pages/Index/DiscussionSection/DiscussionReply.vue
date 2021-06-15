@@ -2,6 +2,23 @@
   <q-card-section class="topic-section">
     <div>
       <q-card class="q-mt-lg q-pa-md">
+        <span v-if="blur" class="blur-box text-center">
+          <div class="text-over-blur">
+            <div>
+              <q-img :src="require('src/assets/icons/grey-check.svg')" width="30px" />
+            </div>
+            <div class="q-mt-sm">
+              <span class="feedback-text">
+                Aguardando feedback dos autores
+              </span>
+            </div>
+            <div class="q-mt-md">
+              <span class="edit-topic" @click="editComment">
+                Editar tópico
+              </span>
+            </div>
+          </div>
+        </span>
         <div>
           <div>
             <span class="topic-subject">{{ comment.subject }}</span>
@@ -10,7 +27,7 @@
             <span class="author-name">{{ comment.author }}</span>
           </div>
           <div class="text-left q-mt-sm">
-            <span class="comment-text">{{ comment.text }}</span>
+            <span class="comment-text" v-html="comment.text" />
           </div>
           <div class="row comment-btns">
             <q-btn class="more-btn" dense flat :ripple="false" icon="more_vert">
@@ -61,6 +78,10 @@ export default {
   props: {
     comment: {
       type: Object,
+      required: true
+    },
+    blur: {
+      type: Boolean,
       required: true
     }
   },
@@ -163,5 +184,52 @@ export default {
   margin-left: 30px;
   width: 25px;
   aspect-ratio: '4/3';
+}
+
+
+.blur-box {
+  content: "";
+  position: absolute;
+  background-color: #ccc;
+  display: block;
+  margin: -16px 0 0 -16px;
+  width: 100%;
+  height: 100%;
+  border-radius: 2px;
+  background: rgba(100, 59, 59, 0.05);
+  backdrop-filter: blur( 5px );
+  -webkit-backdrop-filter: blur( 9.5px );
+  border: 1px solid rgba(162, 121, 121, 0.241);
+  z-index: 2;
+}
+
+.text-over-blur {
+  position:relative;
+  z-index: 3;
+}
+
+.feedback-text {
+  font-family: 'Quicksand', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #707070;
+}
+
+.edit-topic {
+  font-family: 'Segoe UI', sans-serif;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 19px;
+  text-decoration-line: underline;
+  color: $orange-bg;
+  cursor: pointer;
+}
+
+.text-over-blur {
+  top: 30px;
+  bottom: 30px;
+
 }
 </style>

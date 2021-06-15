@@ -4,7 +4,7 @@
       <div class="discussion-area" style="padding-left: 10px; height: 40px;">
         Discussões
       </div>
-      <q-card-section v-if="typingComment || editingComment" class="q-mb-xl">
+      <q-card-section v-if="(typingComment || editingComment) && !sentComment" class="q-mb-xl">
         <div class="text-center suggestion-title">
           <span class="suggestion-text">
             Tem uma dúvida ou sugestão? Compartilhe seu feedback com os autores!
@@ -27,7 +27,7 @@
           </div>
         </div>
       </q-card-section>
-      <q-card-section class="text-center" v-else>
+      <q-card-section class="text-center" v-if="!typingComment && !editingComment && !sentComment">
         <div class="share-ideas-text">
           <span>Compartilhe suas ideias ou dúvidas com os autores!</span>
         </div>
@@ -42,6 +42,17 @@
           </span>
         </div>
       </q-card-section>
+      <q-card-section class="text-center q-mb-xl" v-if="!typingComment && !editingComment && sentComment">
+        <div class="topic-sent-successfully">
+          <span>Seu tópico foi enviado com sucesso! :D</span>
+        </div>
+        <div class="topic-sent-thanks">
+          <span>Agradecemos por sua contribuição, uma notificação será enviada ao seu email assim que seu tópico for respondido!</span>
+        </div>
+        <div class="topic-sent-suggestion">
+          <span>Descubra outros trabalhos!</span>
+        </div>
+      </q-card-section>
       <q-card-section>
         <div class="text-center new-topic-btn-div" >
           <q-btn style="z-index: 1;" v-if="!typingComment" class="new-topic-btn" dense no-caps icon="add" @click="typeComment" label="criar tópico" />
@@ -52,7 +63,7 @@
         </div>
       </q-card-section>
       <div v-for="(comment, index) in comments" :key="comment.author + index + comment.replies">
-        <discussion-reply :comment="comment" />
+        <discussion-reply :comment="comment" :blur="blur && (index === 0) ? true : false " class="q-mb-lg" style="z-index: 0;" />
       </div>
     </q-card>
   </div>
@@ -69,6 +80,8 @@ export default {
   },
   data () {
     return {
+      blur: false,
+      sentComment: false,
       typingComment: false,
       subject: '',
       text: '',
@@ -78,6 +91,7 @@ export default {
   methods: {
     ...mapMutations('globalState', ['addComment', 'editComment']),
     typeComment () {
+      this.sentComment = false
       this.typingComment = true
     },
     sendComment () {
@@ -93,6 +107,7 @@ export default {
       }
 
       this.typingComment = false
+      this.sentComment = true
 
       this.addComment({
         author: this.author,
@@ -113,7 +128,12 @@ export default {
         this.subject = this.editingComment.subject
         this.text = this.editingComment.text
         this.typingComment = true
+        this.sentComment = false
       }
+      this.blur = false
+    },
+    'sentComment' () {
+      this.blur = true
     }
   }
 }
@@ -132,7 +152,7 @@ export default {
   padding: 5px;
 }
 
-.share-ideas-text, .field-title {
+.share-ideas-text, .field-title, .topic-sent-successfully {
   color: $orange-bg;
   font-family: Roboto;
   font-style: normal;
@@ -141,11 +161,15 @@ export default {
   margin-top: 15px;
 }
 
+.topic-sent-successfully {
+  margin-top: 0 !important;
+}
+
 .suggestion-title {
   margin-bottom: 30px;
 }
 
-.share-ideas-subtext {
+.share-ideas-subtext, .topic-sent-thanks {
   margin: 35px 200px;
   font-family: 'Quicksand', sans-serif;
   font-weight: 400;
@@ -195,4 +219,15 @@ export default {
   line-height: 17px;
   color: #4D4D4D;
 }
+
+.topic-sent-suggestion {
+  color: $orange-bg;
+  font-family: 'Quicksand', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  text-decoration-line: underline;
+  margin-bottom: 35px;
+}
+
 </style>
