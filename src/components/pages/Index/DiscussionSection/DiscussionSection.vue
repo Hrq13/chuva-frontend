@@ -130,7 +130,6 @@ export default {
         this.typingComment = true
         this.sentComment = false
       }
-      this.blur = false
     },
     'sentComment' () {
       this.blur = true
