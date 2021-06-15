@@ -29,23 +29,23 @@ export default function () {
         likes: 4,
         replies: [
           {
-            name: 'Adriano da Silva',
+            author: 'Adriano da Silva',
             privilege: 'Autor',
             text: 'Resposta do autor é aqui. Relato inscreve-se no campo da análise da dimensão e impacto de processo formativo situado impacto de processo formativo processo resente relato inscreve-se no campo da análise da dimensão e impacto de processo formativo situado impacto de processo formativo processo.'
           },
           {
-            name: 'Carlos Henrique Santos',
+            author: 'Carlos Henrique Santos',
             privilege: '',
             text: `Consegui entender melhor agora! Parece que a variação da análise da dimensão e impacto de processo formativo situado impacto de processo formativo. <br><br>Obrigada pela resposta, muito interessante o seu trabalho! `
           },
           {
-            name: 'Carmila Ferreira Andrade',
+            author: 'Carmila Ferreira Andrade',
             privilege: 'Coautor',
             text: `Também ínteressante lembrar que o relato inscreve-se no campo da análise da dimensão e impacto de processo formativo situado impacto de processo formativo processo resente relato inscreve-se no campo da análise da dimensão e impacto de processo formativo situado impacto de processo formativo processo.
             <br><br>Situado impacto de processo formativo processo resente relato inscreve-se no campo da análise da dimensão e impacto de processo formativo situado impacto de processo formativo processo.`
           },
           {
-            name: 'Ana Carolina',
+            author: 'Ana Carolina',
             privilege: 'Coautor',
             text: `Resposta do autor é aqui. Relato inscreve-se no campo da análise da dimensão e impacto de processo formativo situado impacto de processo formativo processo resente relato inscreve-se no campo da análise da dimensão e impacto de processo formativo situado impacto de processo formativo processo.`
           }

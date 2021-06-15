@@ -22,6 +22,22 @@
           </div>
         </div>
       </q-card>
+      <div v-if="comment.replies.length > 0">
+        <div v-for="(reply, index) in comment.replies" :key="index">
+          <q-card square class="q-pa-md" :style="reply.privilege ? 'background: #F8F8F8;' : ''">
+            <div class="row">
+              <span class="reply-author">{{ reply.author }}</span>
+              <div v-if="reply.privilege" class="row">
+                <span class="privilege-text">{{ reply.privilege }}</span>
+                <q-img class="checked-icon" :src="require('src/assets/icons/checked.svg')"/>
+              </div>
+            </div>
+            <div class="q-mt-sm reply-text">
+              <span v-html="reply.text" />
+            </div>
+          </q-card>
+        </div>
+      </div>
     </div>
   </q-card-section>
 </template>
@@ -51,7 +67,7 @@ export default {
   margin-top: -60px;
 }
 
-.author-name {
+.author-name, .reply-author {
   font-family: 'Quicksand', sans-serif;
   font-style: normal;
   font-weight: bold;
@@ -60,7 +76,7 @@ export default {
   color: #5C5C5C;
 }
 
-.comment-text {
+.comment-text, .reply-text {
   font-family: 'Quicksand', sans-serif;
   font-style: normal;
   font-weight: normal;
@@ -95,5 +111,28 @@ export default {
   color: #757575;
   margin-top: 25px;
   margin-left: 20px;
+}
+
+.reply-author, .privilege-text, .checked-icon {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.reply-author {
+  margin-right: auto;
+}
+
+.privilege-text {
+  color: $orange-bg;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.checked-icon {
+  margin-left: 30px;
+  width: 25px;
+  aspect-ratio: '4/3';
 }
 </style>
