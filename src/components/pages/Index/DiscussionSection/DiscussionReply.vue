@@ -13,7 +13,11 @@
             <span class="comment-text">{{ comment.text }}</span>
           </div>
           <div class="row comment-btns">
-            <q-btn class="more-btn" dense flat :ripple="false" icon="more_vert" />
+            <q-btn class="more-btn" dense flat :ripple="false" icon="more_vert">
+              <q-menu>
+                <q-btn dense flat no-caps color="red" @click="removeComment(comment)" label="Deletar comentário" />
+              </q-menu>
+            </q-btn>
             <q-btn class="favorite-btn" size="sm" flat dense :ripple="false" icon="favorite" />
             <div class="comment-stats" style="z-index: 1;">
               <span>{{ comment.likes === 1 ? `${comment.likes} like` : `${comment.likes} likes` }}</span>
@@ -49,6 +53,8 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+
 export default {
   name: 'DiscussionReply',
   props: {
@@ -63,6 +69,7 @@ export default {
     }
   },
   methods: {
+    ...mapMutations('globalState', ['removeComment']),
     showReplies () {
       this.displayReply = !this.displayReply
     }

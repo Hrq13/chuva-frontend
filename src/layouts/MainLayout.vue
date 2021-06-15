@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout view="lhh Lpr lFf">
     <q-header>
       <q-toolbar class="toolbar">
         <q-btn-dropdown
