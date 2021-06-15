@@ -25,35 +25,22 @@
           <q-separator />
         </div>
       </q-card-section>
-      <q-card-section class="topic-section">
-        <div v-for="(comment, index) in comments" :key="comment.author + index">
-          <q-card class="q-mt-lg q-pa-md">
-            <div>
-              <div>
-                <span class="topic-subject">{{ comment.subject }}</span>
-              </div>
-              <div>
-                <span class="author-name">{{ comment.author }}</span>
-              </div>
-              <div class="text-left q-mt-sm">
-                <span class="comment-text">{{ comment.text }}</span>
-              </div>
-            </div>
-          </q-card>
-        </div>
-      </q-card-section>
+      <discussion-reply />
     </q-card>
   </div>
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
+import DiscussionReply from './DiscussionReply.vue'
+
 export default {
   name: 'DiscussionSection',
-  props: {
-    comments: {
-      type: Array,
-      required: true
-    }
+  components: {
+    DiscussionReply
+  },
+  methods: {
+    ...mapMutations('globalState', ['addComments'])
   }
 }
 </script>
@@ -71,7 +58,7 @@ export default {
   padding: 5px;
 }
 
-.share-ideas-text, .topic-subject {
+.share-ideas-text {
   color: $orange-bg;
   font-family: Roboto;
   font-style: normal;
@@ -100,28 +87,5 @@ export default {
   background: linear-gradient(180deg, #FEB254 0%, #F0813D 100%);
   box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.12), 0px 2px 2px rgba(0, 0, 0, 0.24);
   border-radius: 4px;
-}
-
-.topic-section {
-  margin-top: -60px;
-}
-
-.author-name {
-  font-family: 'Quicksand', sans-serif;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 12px;
-  line-height: 15px;
-  color: #5C5C5C;
-}
-
-.comment-text {
-  font-family: 'Quicksand', sans-serif;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 17px;
-
-  color: #4D4D4D;
 }
 </style>
