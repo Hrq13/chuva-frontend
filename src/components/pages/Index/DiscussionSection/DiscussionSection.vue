@@ -110,7 +110,7 @@ export default {
   color: $text-primary;
   font-size: 15pt;
   font-weight: 500;
-  margin: 5px;
+  padding: 5px;
 }
 
 .share-ideas-text, .field-title {
