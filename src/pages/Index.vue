@@ -91,6 +91,7 @@
       :fullText="fullResumoText"
     />
     <discussion-section />
+    <q-img :src="require('src/assets/images/imagem-footer.png')" class="q-ml-md"/>
   </q-page>
 </template>
 
