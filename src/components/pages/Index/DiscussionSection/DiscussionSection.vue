@@ -4,7 +4,7 @@
       <div class="discussion-area" style="padding-left: 10px; height: 40px;">
         Discussões
       </div>
-      <q-card-section v-if="typingComment" class="q-mb-xl">
+      <q-card-section v-if="typingComment || editingComment" class="q-mb-xl">
         <div class="text-center suggestion-title">
           <span class="suggestion-text">
             Tem uma dúvida ou sugestão? Compartilhe seu feedback com os autores!
@@ -71,21 +71,31 @@ export default {
     return {
       typingComment: false,
       subject: '',
-      text: ''
+      text: '',
+      author: 'Henrique Miranda' // this will become dynamic once account system is implemented
     }
   },
   methods: {
-    ...mapMutations('globalState', ['addComment']),
+    ...mapMutations('globalState', ['addComment', 'editComment']),
     typeComment () {
       this.typingComment = true
     },
     sendComment () {
       if (!this.subject || !this.text) return
 
+      if (this.isEditingComment) {
+        const editedComment = { subject: this.subject, text: this.text, author: this.author }
+        this.editComment(editedComment)
+        this.typingComment = false
+        this.subject = ''
+        this.text = ''
+        return
+      }
+
       this.typingComment = false
 
       this.addComment({
-        author: 'Henrique Miranda', // this will become dynamic once account system is implemented
+        author: this.author,
         subject: this.subject,
         text: this.text
       })
@@ -95,7 +105,16 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('globalState', ['comments'])
+    ...mapGetters('globalState', ['comments', 'isEditingComment', 'editingComment'])
+  },
+  watch: {
+    editingComment () {
+      if (this.editingComment) {
+        this.subject = this.editingComment.subject
+        this.text = this.editingComment.text
+        this.typingComment = true
+      }
+    }
   }
 }
 </script>

@@ -15,7 +15,8 @@
           <div class="row comment-btns">
             <q-btn class="more-btn" dense flat :ripple="false" icon="more_vert">
               <q-menu>
-                <q-btn dense flat no-caps color="red" @click="removeComment(comment)" label="Deletar comentário" />
+                <q-btn dense flat no-caps color="red" @click="removeComment(comment)" label="Deletar" />
+                <q-btn dense flat no-caps color="blue-7" @click="editComment()" label="Editar" />
               </q-menu>
             </q-btn>
             <q-btn class="favorite-btn" size="sm" flat dense :ripple="false" icon="favorite" />
@@ -69,9 +70,12 @@ export default {
     }
   },
   methods: {
-    ...mapMutations('globalState', ['removeComment']),
+    ...mapMutations('globalState', ['removeComment', 'editingComment']),
     showReplies () {
       this.displayReply = !this.displayReply
+    },
+    editComment () {
+      this.editingComment(this.comment)
     }
   }
 }

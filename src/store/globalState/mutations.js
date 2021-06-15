@@ -31,13 +31,25 @@ export function removeComment (state, _comment) {
   console.error('[ERROR] Comment could not be removed');
 }
 
-export function editComment (state, { currentComment, editedComment }) {
+export function editComment (state, editedComment) {
+  let found = false
+
   state.comments.map((comment, index) => {
-    if (comment === currentComment) {
+    if (comment === state.editingComment) {
+      found = true
       comment.author = editedComment.author
       comment.subject = editedComment.subject
       comment.text = editedComment.text
       return
     }
   })
+  state.editingComment = null
+
+  if (found) return
+
+  console.error('[ERROR] Could not edit comment');
+}
+
+export function editingComment (state, comment) {
+  state.editingComment = comment
 }
