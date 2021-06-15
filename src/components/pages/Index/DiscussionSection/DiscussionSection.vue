@@ -4,7 +4,30 @@
       <div class="discussion-area" style="padding-left: 10px; height: 40px;">
         Discussões
       </div>
-      <q-card-section class="text-center">
+      <q-card-section v-if="typingComment" class="q-mb-xl">
+        <div class="text-center suggestion-title">
+          <span class="suggestion-text">
+            Tem uma dúvida ou sugestão? Compartilhe seu feedback com os autores!
+          </span>
+        </div>
+        <div>
+          <div>
+            <span class="field-title">Assunto</span>
+            <q-input
+              dense
+              outlined
+              square
+              v-model="subject"
+              label="Defina um tópico sucinto para notificar os autores..."
+            />
+          </div>
+          <div class="q-mt-sm">
+            <span class="field-title">Conteúdo</span>
+            <q-editor v-model="text" paragraph-tag="p" square min-height="5rem" />
+          </div>
+        </div>
+      </q-card-section>
+      <q-card-section class="text-center" v-else>
         <div class="share-ideas-text">
           <span>Compartilhe suas ideias ou dúvidas com os autores!</span>
         </div>
@@ -20,18 +43,23 @@
         </div>
       </q-card-section>
       <q-card-section>
-        <div class="text-center new-topic-btn-div">
-          <q-btn class="new-topic-btn" dense no-caps icon="add" label="criar tópico"/>
+        <div class="text-center new-topic-btn-div" >
+          <q-btn style="z-index: 1;" v-if="!typingComment" class="new-topic-btn" dense no-caps icon="add" @click="typeComment" label="criar tópico" />
+          <div class="row" v-else>
+            <q-btn style="z-index: 1;" class="add-topic-btn" dense no-caps @click="sendComment" label="Enviar" />
+          </div>
           <q-separator />
         </div>
       </q-card-section>
-      <discussion-reply />
+      <div v-for="(comment, index) in comments" :key="comment.author + index + comment.replies">
+        <discussion-reply :comment="comment" />
+      </div>
     </q-card>
   </div>
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapMutations, mapGetters } from 'vuex';
 import DiscussionReply from './DiscussionReply.vue'
 
 export default {
@@ -39,8 +67,35 @@ export default {
   components: {
     DiscussionReply
   },
+  data () {
+    return {
+      typingComment: false,
+      subject: '',
+      text: ''
+    }
+  },
   methods: {
-    ...mapMutations('globalState', ['addComments'])
+    ...mapMutations('globalState', ['addComment']),
+    typeComment () {
+      this.typingComment = true
+    },
+    sendComment () {
+      if (!this.subject || !this.text) return
+
+      this.typingComment = false
+
+      this.addComment({
+        author: 'Henrique Miranda', // this will become dynamic once account system is implemented
+        subject: this.subject,
+        text: this.text
+      })
+
+      this.subject = ''
+      this.text = ''
+    }
+  },
+  computed: {
+    ...mapGetters('globalState', ['comments'])
   }
 }
 </script>
@@ -55,10 +110,10 @@ export default {
   color: $text-primary;
   font-size: 15pt;
   font-weight: 500;
-  padding: 5px;
+  margin: 5px;
 }
 
-.share-ideas-text {
+.share-ideas-text, .field-title {
   color: $orange-bg;
   font-family: Roboto;
   font-style: normal;
@@ -67,7 +122,11 @@ export default {
   margin-top: 15px;
 }
 
-.share-ideas-subtext, .new-topic-btn {
+.suggestion-title {
+  margin-bottom: 30px;
+}
+
+.share-ideas-subtext {
   margin: 35px 200px;
   font-family: 'Quicksand', sans-serif;
   font-weight: 400;
@@ -77,15 +136,44 @@ export default {
 }
 
 .new-topic-btn-div {
-  margin-top: -90px;
+  margin-top: -60px;
 }
 
 .new-topic-btn {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: $text-primary;
+  font-style: normal;
   font-weight: bold !important;
   margin-bottom: -17px;
   color: white;
   background: linear-gradient(180deg, #FEB254 0%, #F0813D 100%);
   box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.12), 0px 2px 2px rgba(0, 0, 0, 0.24);
   border-radius: 4px;
+}
+
+.add-topic-btn {
+  font-weight: 400;
+  font-size: 14px;
+  color: $text-primary;
+  font-style: normal;
+  font-weight: bold !important;
+  color: white;
+  background: linear-gradient(180deg, #FEB254 0%, #F0813D 100%);
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.12), 0px 2px 2px rgba(0, 0, 0, 0.24);
+  margin-top: -20px;
+  height: 35px;
+  width: 150px;
+  margin-left: auto;
+}
+
+.suggestion-text {
+  font-family: 'Quicksand', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  color: #4D4D4D;
 }
 </style>

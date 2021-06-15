@@ -1,6 +1,6 @@
 <template>
   <q-card-section class="topic-section">
-    <div v-for="(comment, index) in comments" :key="comment.author + index">
+    <div>
       <q-card class="q-mt-lg q-pa-md">
         <div>
           <div>
@@ -15,14 +15,20 @@
           <div class="row comment-btns">
             <q-btn class="more-btn" dense flat :ripple="false" icon="more_vert" />
             <q-btn class="favorite-btn" size="sm" flat dense :ripple="false" icon="favorite" />
-            <div class="comment-stats">
+            <div class="comment-stats" style="z-index: 1;">
               <span>{{ comment.likes === 1 ? `${comment.likes} like` : `${comment.likes} likes` }}</span>
-              <span class="q-ml-md">{{ comment.replies.length === 1 ? `${comment.replies.length} resposta` : `${comment.replies.length} respostas` }}</span>
+              <span
+                class="q-ml-md"
+                @click="showReplies"
+                :style="comment.replies.length > 0 ? 'cursor: pointer;' : ''"
+              >
+                {{ comment.replies.length === 1 ? `${comment.replies.length} resposta` : `${comment.replies.length} respostas` }}
+              </span>
             </div>
           </div>
         </div>
       </q-card>
-      <div v-if="comment.replies.length > 0">
+      <div v-if="displayReply && comment.replies.length > 0">
         <div v-for="(reply, index) in comment.replies" :key="index">
           <q-card square class="q-pa-md" :style="reply.privilege ? 'background: #F8F8F8;' : ''">
             <div class="row">
@@ -43,12 +49,23 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-
 export default {
   name: 'DiscussionReply',
-  computed: {
-    ...mapGetters('globalState', ['comments'])
+  props: {
+    comment: {
+      type: Object,
+      required: true
+    }
+  },
+  data () {
+    return {
+      displayReply: false
+    }
+  },
+  methods: {
+    showReplies () {
+      this.displayReply = !this.displayReply
+    }
   }
 }
 </script>
@@ -82,7 +99,6 @@ export default {
   font-weight: normal;
   font-size: 14px;
   line-height: 17px;
-
   color: #4D4D4D;
 }
 
@@ -92,6 +108,7 @@ export default {
   font-size: 15pt;
   width: 15px;
   height: 25px;
+  z-index: 1;
 }
 
 .favorite-btn {
@@ -100,6 +117,7 @@ export default {
   margin-top: 22px;
   width: 35px;
   height: 25px;
+  z-index: 1;
 }
 
 .comment-stats {
