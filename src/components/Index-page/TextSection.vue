@@ -7,7 +7,7 @@
 
       <q-separator />
 
-      <q-scroll-area :style="showBtn ? 'height: 200px;' : 'height: 390px'">
+      <q-card-section>
         <div>
           <div class="q-pa-md resumo-inner-text">
             <span v-if="showBtn">
@@ -17,7 +17,7 @@
             <span v-else v-html="displayText" />
           </div>
         </div>
-      </q-scroll-area>
+      </q-card-section>
     </q-card>
   </div>
 </template>
