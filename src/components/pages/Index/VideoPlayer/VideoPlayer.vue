@@ -5,6 +5,7 @@
      class="video-element"
      rounded
      radius="4px"
+     content-style="height: 56.5vh"
      :bottom-controls="false"
      :sources="video.sources"
      :poster="require('src/assets/images/dewey1.png')"
@@ -19,7 +20,7 @@ export default {
   name: 'VideoPlayer',
   data () {
     return {
-      overlay: true,
+      overlay: false,
       video: {
         label: 'Elephants Dream',
         sources: [
@@ -29,11 +30,6 @@ export default {
           }
         ]
       }
-    }
-  },
-  computed: {
-    isMobile () {
-      return this.$q.platform.is.mobile
     }
   }
 }

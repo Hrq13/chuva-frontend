@@ -1,67 +1,31 @@
 <template>
   <q-page>
-    <div class="row page-row">
-      <div class="col top-col">
-        <span class="top-row-header">
-          Análise sensorial de preparações funcionais desenvolvidas para escolares entre 09 e 15 anos, do município de Campinas/SP
-        </span>
-        <video-player style="margin-top: 20.5px;" />
-      </div>
-      <div :class="isMobile ? 'row q-mt-lg' : 'col top-col-2'">
-        <div style="text-align: right;">
-          <q-btn class="top-btn" style="width: 130px" dense icon="download" label="Download" />
-          <q-btn class="top-btn q-ml-sm" style="width: 40px" dense icon="star" />
-          <q-btn class="top-btn q-ml-sm" style="width: 40px" dense>
-            <q-img :src="require('src/assets/icons/doi.svg')" width="24px"/>
-          </q-btn>
+    <main class="row page-row">
+      <section class="section-1">
+        <div class="video-container">
+          <h1>Análise sensorial de preparações funcionais desenvolvidas para escolares entre 09 e 15 anos, do município de Campinas/SP</h1>
+          <!-- <iframe class="video-player" src="https://www.youtube.com/embed/CICIOJqEb5c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+          <video-player class="video-player" v-if="true"/>
         </div>
-        <div :class="(isMobile ? 'row' : 'col') + ' cite-trabalho'">
-          COMO CITAR ESSE TRABALHO?
-        </div>
-        <div v-if="!isMobile">
-          <q-card flat bordered class="top-text-card">
-            <div class="card-title-area">
-              Detalhes
+        <div class="video-details">
+          <div class="video-details-bar">
+            <div class="video-details-buttons">
+              <q-btn class="top-btn" dense icon="download" label="Download" />
+              <q-btn class="top-btn" dense icon="star" />
+              <q-btn class="top-btn" dense>
+                <q-img :src="require('src/assets/icons/doi.svg')" width="24px"/>
+              </q-btn>
             </div>
-
-            <q-separator />
-
-            <q-scroll-area
-              style="height: 350px; max-width: 300px"
-            >
-              <div class="q-pa-md card-inner-text">
-                Tipo de Apresentação: <strong>Pôster</strong><br>
-                Eixo temático: <strong>Alimentação e saúde (AS) </strong><br>
-                Palavras-chaves: <strong>Alimentos funcionais, alimentação escolar.</strong><br><br>
-
-                <strong>Autores:</strong><br>
-                Galileo Galilei¹<br>
-                Berta Lange de Morretes²<br>
-                Isaac Newton³<br>
-                Cesar Lattes¹<br>
-                Stephen Hawking⁴<br><br>
-
-                <i>
-                ¹Universidade Estadual de Campinas<br>
-                ²Universidade de São Paulo<br>
-                ³Instituto Nacional de Pesquisas Espaciais<br>
-                ⁴Universidade Federal do Rio de Janeiro<br>
-                </i>
-              </div>
-            </q-scroll-area>
-          </q-card>
-        </div>
-      </div>
-      <div v-if="isMobile" style="width: 100%">
-        <q-card flat bordered class="mobile-top-text-card">
-          <div class="card-title-area">
-            Detalhes
+            <p class="cite-trabalho">
+              COMO CITAR ESSE TRABALHO?
+            </p>
           </div>
+          <div flat bordered class="video-details-card">
+            <p class="card-title">
+              Detalhes
+            </p>
 
-          <q-separator />
-
-          <q-scroll-area style="height: 200px;">
-            <div class="q-pa-md card-inner-text">
+            <p class="video-details-text">
               Tipo de Apresentação: <strong>Pôster</strong><br>
               Eixo temático: <strong>Alimentação e saúde (AS) </strong><br>
               Palavras-chaves: <strong>Alimentos funcionais, alimentação escolar.</strong><br><br>
@@ -77,21 +41,33 @@
               ¹Universidade Estadual de Campinas<br>
               ²Universidade de São Paulo<br>
               ³Instituto Nacional de Pesquisas Espaciais<br>
-              ⁴Universidade Federal do Rio de Janeiro<br>
+              ⁴Universidade Federal do Rio de Janeiro
               </i>
-            </div>
-          </q-scroll-area>
-        </q-card>
-      </div>
-    </div>
-    <text-section
-      title="Resumo"
-      :summarizedText="resumoText"
-      :showReadMoreBtn="true"
-      :fullText="fullResumoText"
-    />
-    <discussion-section />
-    <q-img :src="require('src/assets/images/imagem-footer.png')" class="q-ml-md"/>
+            </p>
+          </div>
+        </div>
+      </section>
+      <text-section
+        title="Resumo"
+        class="text-section"
+        :summarizedText="resumoText"
+        :showReadMoreBtn="true"
+        :fullText="fullResumoText"
+      />
+      <discussion-section class="discussion-section" />
+      <footer>
+        <div class="footer-title">
+          <p>Galoá</p>
+          <p>anais e proceedings</p>
+          <button>Saiba mais</button>
+        </div>
+        <p class="footer-text">
+          <strong>Preservar a memória do evento e ampliar o acesso ao conhecimento científico</strong> gerado em eventos é a razão de ser da plataforma Galoá Proceedings<br><br>
+          Os trabalhos publicados aqui têm maior chance de alcance e ficam disponíveis para toda a comunidade científica, mantendo aceso o debate científico
+          fomentado pelos encontro e aumentando o impacto do evento.
+        </p>
+      </footer>
+    </main>
   </q-page>
 </template>
 
@@ -126,33 +102,95 @@ export default {
       Praesent velit dolor, dignissim sed quam ac, efficitur porta justo. Pellentesque porta pharetra felis ut hendrerit. Nulla facilisi. Aliquam erat volutpat. Nunc sit amet faucibus quam. Maecenas dapibus luctus dolor at viverra. Duis nec fringilla libero. Duis risus nibh, viverra ac orci nec, iaculis dictum sem. Aliquam at malesuada arcu. Aliquam erat volutpat. Donec varius ipsum purus, ut vehicula purus placerat vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
       `
     }
-  },
-  computed: {
-    isMobile() {
-      return this.$q.platform.is.mobile
-    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
 .page-row {
-  margin: 20px 45px;
+  margin: 1.2em 2.8em;
+}
+.section-1 {
+  display: block;
+  position: relative;
+  padding-bottom: 10px;
+  height: fit-content;
 }
 
-.top-row-header {
-  font-size: min(max(1rem, 4vw), 15pt);
-  font-weight: 700;
-  color: rgb(242, 115, 68)
+.video-container {
+  display: inline-block;
+  width: 68.5%;
 }
 
-.top-col-2 {
-  margin-left: auto;
-  max-width: 30%;
+.video-player {
+  width: 100%;
+  height: 56.5vh;
+  margin: 0;
+  padding: 0;
+}
+
+.video-container h1 {
+  font-family: Roboto;
+  display: inline-block;
+  font-size: 1.3em;
+  line-height: 1.2;
+  font-style: normal;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  color: #ED7839;
+}
+
+.details-container {
+  /* display: block; */
+  height: 100%;
+  /* border: 3px solid red; */
+}
+
+.video-details {
+  display: inline-block;
+  width: 27%;
+  margin: 0;
+  margin-left: 4.5%;
+  /* border: 3px solid purple; */
+}
+
+.video-details-card {
+  height: 98%;
+  border: 0;
+  margin: 0;
+}
+
+.video-details-text {
+  height: 50.5vh;
+  width: 100%;
+  font-family: 'Quicksand', sans-serif;
+  color: $text-primary;
+  font-size: 1em;
+  font-style: normal;
+  padding: .5em;
+  margin: 0;
+  font-weight: 400;
+  overflow-y: scroll;
+  background: white;
+  border: 1px solid rgba($color: #000000, $alpha: .1);
+}
+
+.video-details-buttons {
+  text-align: right;
+}
+
+.video-details-buttons .top-btn:nth-child(2) {
+  margin: 0 10px;
+}
+
+.video-details-bar, h1 {
+  height: 75px;
+  margin: 0;
 }
 
 .top-btn {
   background: $orange-bg;
+  display: inline-block;
   color: white;
 }
 
@@ -161,36 +199,201 @@ export default {
   font-family: Roboto;
   font-style: normal;
   font-weight: 500;
-  font-size: min(max(1rem, 4vw), 14.5px);
-  line-height: 25px;
+  font-size: .9em;
   text-align: right;
   letter-spacing: 0.05em;
   color: #ED7839;
 }
 
-.top-text-card {
-  margin-left: auto;
-  max-width: 90%;
-}
-
-.card-title-area {
+.card-title {
   background: $primary;
   font-size: 15pt;
   color: $text-primary;
   height: 47px;
-  padding: 10px 0 10px 10px;
+  line-height: 2.3;
+  margin: 0;
+  border: 1px solid rgba($color: #000000, $alpha: .1);
+  padding: 0 10px;
   font-weight: 500;
 }
 
-.card-inner-text {
-  font-family: 'Quicksand', sans-serif;
-  color: $text-primary;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
+.text-section, .discussion-section {
+  width: 100%;
+  margin: 10px 0;
 }
 
-.mobile-top-text-card {
-  width: 100%
+footer {
+  margin-top: 10px;
+  padding: 0;
+}
+
+.footer-title {
+  width: 250px;
+  text-align: center;
+  float: left;
+  font-family: 'Quicksand';
+  top: -15px;
+  margin-left: -30px;
+  box-sizing: border-box;
+}
+
+.footer-title p:first-child {
+  display: inline-block;
+  font-weight: bolder;
+  font-size: 5em;
+  margin: 0;
+  padding: 0;
+  height: 65px;
+  line-height: .8;
+  color: purple;
+  box-sizing: border-box;
+}
+
+.footer-title p:nth-child(2) {
+  font-weight: normal;
+  font-size: 1.1em;
+  color: purple;
+  position: relative;
+}
+
+.footer-title p:nth-child(2)::before, .footer-title p:nth-child(2)::after {
+  content: '....';
+  display: inline-block;
+  font-size: 1.5em;
+  color: transparent;
+  text-decoration: line-through;
+  text-decoration-color: purple;
+  /* box-sizing: border-box; */
+}
+
+.footer-title p:nth-child(2)::before {
+  position: absolute;
+  left: 31px;
+  top: -4px;
+}
+
+.footer-title p:nth-child(2)::after {
+  position: absolute;
+  right: 31px;
+  top: -4px;
+}
+
+.footer-title p {
+  margin: 0;
+}
+
+.footer-title button {
+  background-color: rgb(131, 46, 131);
+  color: white;
+  font-weight: bold;
+  margin-top: 15px;
+  height: 30px;
+  width: 75%;
+  border-radius: 5px;
+  border: 0;
+  cursor: pointer;
+}
+
+.footer-text {
+  font-family: 'Quicksand', sans-serif;
+  font-style: normal;
+  font-size: 1.3em;
+  line-height: 1.3em;
+  color: #4D4D4D;
+}
+
+@media screen and (max-width: 1024px) {
+  .page-row {
+    margin: 5px 10px;
+  }
+  .details-container, .video-details, .video-details {
+    display: block;
+  }
+
+  .video-details {
+    width: 100%;
+    margin-left: 0;
+    height: auto;
+  }
+
+  .video-details-text {
+    max-height: 150px;
+  }
+
+  .video-container {
+    width: 100%;
+  }
+
+  .video-details-bar {
+    margin: auto;
+    padding: 0;
+    height: 2.8em;
+    padding: 2px 10px;
+    /* border: 1px solid red; */
+  }
+
+  .video-details-bar p {
+    margin-left: auto;
+    text-align: right;
+  }
+
+  .video-details-buttons {
+    display: inline-block;
+    text-align: left;
+    width: 50%;
+  }
+
+  .video-details-buttons .top-btn:nth-child(2) {
+    margin: 0 10px;
+  }
+
+  .cite-trabalho {
+    margin: 0;
+    font-size: 1.2em;
+    box-sizing: border-box;
+    display: inline-block;
+    color: #ED7839;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .video-details-bar {
+    height: 75px;
+  }
+  .video-details-buttons {
+    display: block;
+    width: 100%;
+    text-align: left;
+    /* border: 1px solid black; */
+  }
+
+  .video-details-bar p {
+    margin-top: 15px;
+    font-size: 1.1em;
+  }
+
+  .footer-text {
+    font-size: 1em;
+    line-height: 1em;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  footer {
+    margin: 15px 0;
+  }
+
+  .footer-title {
+    position: relative;
+    float: none;
+    margin: auto;
+  }
+
+  .footer-text {
+    font-size: .9em;
+    line-height: 1em;
+    max-width: 80%;
+    margin: auto;
+  }
 }
 </style>

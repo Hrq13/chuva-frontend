@@ -177,6 +177,11 @@ export default {
   font-style: normal;
 }
 
+.share-ideas-subtext {
+  width: 80%;
+  margin: 35px auto;
+}
+
 .new-topic-btn-div {
   margin-top: -60px;
 }
