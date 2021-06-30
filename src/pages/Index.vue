@@ -151,28 +151,31 @@ export default {
   width: 27%;
   margin: 0;
   margin-left: 4.5%;
-  /* border: 3px solid purple; */
 }
 
 .video-details-card {
   height: 98%;
   border: 0;
   margin: 0;
+  /* border: 3px solid purple; */
 }
 
 .video-details-text {
+  border: 1px solid rgba($color: #000000, $alpha: .1);
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-top-width: 0;
   height: 50.5vh;
   width: 100%;
   font-family: 'Quicksand', sans-serif;
   color: $text-primary;
-  font-size: 1em;
+  font-size: 1.2em;
   font-style: normal;
   padding: .5em;
   margin: 0;
   font-weight: 400;
   overflow-y: scroll;
   background: white;
-  border: 1px solid rgba($color: #000000, $alpha: .1);
 }
 
 .video-details-buttons {
@@ -212,9 +215,11 @@ export default {
   height: 47px;
   line-height: 2.3;
   margin: 0;
-  border: 1px solid rgba($color: #000000, $alpha: .1);
+  border: 1px solid rgba($color: #636363, $alpha: .1);
   padding: 0 10px;
   font-weight: 500;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
 }
 
 .text-section, .discussion-section {
