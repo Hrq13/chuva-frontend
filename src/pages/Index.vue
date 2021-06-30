@@ -378,6 +378,10 @@ footer {
 }
 
 @media screen and (max-width: 450px) {
+  .video-container h1 {
+    margin: 20px 0;
+  }
+
   footer {
     margin: 15px 0;
   }
