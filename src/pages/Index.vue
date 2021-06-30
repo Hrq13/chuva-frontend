@@ -228,13 +228,11 @@ footer {
 }
 
 .footer-title {
-  width: 250px;
+  width: 17.5em;
   text-align: center;
   float: left;
   font-family: 'Quicksand';
-  top: -15px;
-  margin-left: -30px;
-  box-sizing: border-box;
+  top: -1em;
 }
 
 .footer-title p:first-child {
