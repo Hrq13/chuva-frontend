@@ -169,17 +169,13 @@ export default {
 }
 
 .share-ideas-subtext, .topic-sent-thanks {
-  margin: 35px 200px;
+  margin: 35px auto;
   font-family: 'Quicksand', sans-serif;
   font-weight: 400;
-  font-size: 14px;
+  width: 80%;
+  font-size: 1em;
   color: $text-primary;
   font-style: normal;
-}
-
-.share-ideas-subtext {
-  width: 80%;
-  margin: 35px auto;
 }
 
 .new-topic-btn-div {
