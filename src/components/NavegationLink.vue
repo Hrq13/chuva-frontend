@@ -77,6 +77,8 @@ export default {
 }
 
 .button-text {
-  color: rgb(136, 107, 107);
+  color: #725C5C;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 600;
 }
 </style>

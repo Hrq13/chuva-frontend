@@ -141,9 +141,7 @@ export default {
 }
 
 .details-container {
-  /* display: block; */
   height: 100%;
-  /* border: 3px solid red; */
 }
 
 .video-details {
@@ -157,24 +155,25 @@ export default {
   height: 98%;
   border: 0;
   margin: 0;
-  /* border: 3px solid purple; */
 }
 
 .video-details-text {
+  font-family: 'Quicksand', sans-serif;
+  color: $text-primary;
+  font-size: 1.1em;
+  line-height: 120%;
+  font-style: normal;
+  font-weight: 400;
+
   border: 1px solid rgba($color: #000000, $alpha: .1);
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px;
   border-top-width: 0;
   height: 50.5vh;
   width: 100%;
-  font-family: 'Quicksand', sans-serif;
-  color: $text-primary;
-  font-size: 1.2em;
-  font-style: normal;
   padding: .5em;
-  margin: 0;
-  font-weight: 400;
   overflow-y: scroll;
+  margin: 0;
   background: white;
 }
 
@@ -248,14 +247,14 @@ footer {
   padding: 0;
   height: 65px;
   line-height: .8;
-  color: purple;
+  color: #341947;
   box-sizing: border-box;
 }
 
 .footer-title p:nth-child(2) {
   font-weight: normal;
   font-size: 1.1em;
-  color: purple;
+  color: #341947;
   position: relative;
 }
 
@@ -265,8 +264,7 @@ footer {
   font-size: 1.5em;
   color: transparent;
   text-decoration: line-through;
-  text-decoration-color: purple;
-  /* box-sizing: border-box; */
+  text-decoration-color: #341947;
 }
 
 .footer-title p:nth-child(2)::before {
@@ -286,7 +284,7 @@ footer {
 }
 
 .footer-title button {
-  background-color: rgb(131, 46, 131);
+  background-color: #71478e;
   color: white;
   font-weight: bold;
   margin-top: 15px;
@@ -332,7 +330,6 @@ footer {
     padding: 0;
     height: 2.8em;
     padding: 2px 10px;
-    /* border: 1px solid red; */
   }
 
   .video-details-bar p {
@@ -367,7 +364,6 @@ footer {
     display: block;
     width: 100%;
     text-align: left;
-    /* border: 1px solid black; */
   }
 
   .video-details-bar p {
