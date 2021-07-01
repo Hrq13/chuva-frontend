@@ -138,11 +138,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-header {
-  /* border: 1px solid orange; */
-}
-
 .header {
   width: 70%;
   height: 100%;
@@ -151,13 +146,11 @@ header {
 }
 
 .lang-menu {
-  /* display: inline-block; */
   float: left;
   position: absolute;
   top: 18px;
   right: 350px;
   width: 15px;
-  /* border: 3px solid blue; */
 }
 
 .mobile-menu {
@@ -229,7 +222,6 @@ header {
 .profile-menu {
   display: inline-block;
   margin-top: 15px;
-  /* border: 1px solid black; */
   width: 75%;
   height: 55px;
 }
@@ -238,7 +230,6 @@ header {
   display: inline-block;
   width: 200px;
   height: 50%;
-  /* border: 1px solid blue; */
 }
 
 .welcome-msg p {
@@ -252,9 +243,13 @@ header {
   margin: 0;
   padding: 0;
   text-align: center;
+  position: relative;
 }
 
 .q-avatar {
+  position: absolute;
+  right: 1px;
+  bottom: -3px;
   margin: -20px 0 0 0 ;
   padding: 0;
 }
@@ -270,7 +265,6 @@ header {
   }
 
   .header {
-    /* border: 3px solid blue; */
     width: 66%;
     padding-left: 0;
   }
@@ -307,13 +301,17 @@ header {
     height: 5em;
   }
 
+  .q-avatar {
+    right: 1px;
+    bottom: -15px;
+  }
+
   .header {
     display: block;
     padding: 10px 0;
     position: relative;
     width: 30%;
     margin-left: auto;
-    /* border: 3px solid black; */
   }
   .header-text {
     font-size: .5em;
@@ -325,7 +323,7 @@ header {
     font-size: 1.5em;
   }
   .lang-menu {
-    right: 120px;
+    right: 100px;
   }
 
   .welcome-msg {
